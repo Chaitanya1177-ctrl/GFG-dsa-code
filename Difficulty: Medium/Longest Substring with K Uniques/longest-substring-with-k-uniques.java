@@ -1,8 +1,8 @@
 class Solution {
     public int longestKSubstr(String s, int k) {
-        // code here
-        int mlen=-1;
+        // code herent
         int start=0;
+        int mlen=-1;
         HashMap<Character,Integer>ss=new HashMap<>();
         for(int end=0;end<s.length();end++){
             char c=s.charAt(end);
@@ -14,11 +14,14 @@ class Solution {
                     ss.remove(f);
                 }
                 start++;
+                // mlen=Math.max(mlen,end-start+1);
             }
             if(ss.size()==k){
-                mlen=Math.max(mlen,end-start+1);
-            }
-        }
+             mlen=Math.max(mlen,end-start+1);
+        }}
+       
         return mlen;
-    }
-}
+        
+        
+    
+}}
