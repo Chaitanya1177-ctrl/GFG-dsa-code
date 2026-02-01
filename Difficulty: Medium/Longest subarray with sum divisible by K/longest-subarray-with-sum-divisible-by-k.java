@@ -1,27 +1,31 @@
-import java.util.*;
-
 class Solution {
     int longestSubarrayDivK(int[] arr, int k) {
 
-        HashMap<Integer, Integer> map = new HashMap<>();
-        map.put(0, -1);   // base case
+        int n = arr.length;
+        long[] p = new long[n];   // 🔑 long prefix sum
+        p[0] = arr[0];
 
-        long sum = 0;     // ✅ FIX: use long
-        int maxLen = 0;
+        int maxlen = 0;
 
-        for (int i = 0; i < arr.length; i++) {
-            sum += arr[i];
+        HashMap<Integer, Integer> ss = new HashMap<>();
+        ss.put(0, -1);
 
-            // normalize remainder for negatives
-            int rem = (int)(((sum % k) + k) % k);
+        // build prefix sum
+        for (int i = 1; i < n; i++) {
+            p[i] = p[i - 1] + arr[i];
+        }
 
-            if (map.containsKey(rem)) {
-                maxLen = Math.max(maxLen, i - map.get(rem));
+        for (int i = 0; i < n; i++) {
+            int val = (int)(p[i] % k);  // mod after long sum
+            if (val < 0) val += k;
+
+            if (ss.containsKey(val)) {
+                maxlen = Math.max(maxlen, i - ss.get(val));
             } else {
-                map.put(rem, i);
+                ss.put(val, i);
             }
         }
 
-        return maxLen;
+        return maxlen;
     }
 }
