@@ -2,7 +2,7 @@
 class Node {
     int data;
     Node left;
-    Node right;ll
+    Node right;
     Node(int data) {
         this.data = data;
         left = null;
@@ -12,17 +12,17 @@ class Node {
 
 class Solution {
     int max=0;
-    int helper(Node root){
+    int ss(Node root){
         if(root==null)return 0;
-        
-        int left=helper(root.left);
-        int right=helper(root.right);
+        int left=ss(root.left);
+        int right=ss(root.right);
         max=Math.max(max,left+right);
-        return 1+Math.max(left,right);
+        return 1+ Math.max(left,right);
     }
     public int diameter(Node root) {
         // code here
-        helper(root);
+        ss(root);
         return max;
+        
     }
 }
