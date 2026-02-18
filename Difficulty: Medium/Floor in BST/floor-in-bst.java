@@ -18,8 +18,7 @@ class Solution {
         while(root!=null){
             if(root.data==x){
                 return x;
-            }
-            else if(root.data>x){
+            }else if(root.data>x){
                 root=root.left;
             }else{
                 ans=root.data;
@@ -27,6 +26,5 @@ class Solution {
             }
         }
         return ans;
-        
     }
 }
